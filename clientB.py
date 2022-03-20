@@ -23,6 +23,18 @@ class MainWindow(QWidget):
         self.label1 = QLabel("Enter your host IP:", self)
         self.text = QLineEdit(self)
         self.text.move(10, 30)
+
+        self.label3 = QLabel("api_key:", self)
+        self.label3.move(10, 130)
+        self.hostname = QLineEdit(self)
+        self.hostname.move(10, 160)
+
+        self.label4 = QLabel("ip:", self)
+        self.label4.move(10, 190)
+        self.api_key = QLineEdit(self)
+        self.api_key.move(10, 220)
+
+
         self.label2 = QLabel("Answer:", self)
         self.label2.move(10, 60)
         self.button = QPushButton("Send", self)
