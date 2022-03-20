@@ -26,13 +26,13 @@ class MainWindow(QWidget):
 
         self.label3 = QLabel("api_key:", self)
         self.label3.move(10, 130)
-        self.hostname = QLineEdit(self)
-        self.hostname.move(10, 160)
+        self.api_key = QLineEdit(self)
+        self.api_key.move(10, 160)
 
         self.label4 = QLabel("ip:", self)
         self.label4.move(10, 190)
-        self.api_key = QLineEdit(self)
-        self.api_key.move(10, 220)
+        self.ip = QLineEdit(self)
+        self.ip.move(10, 220)
 
 
         self.label2 = QLabel("Answer:", self)
@@ -47,18 +47,20 @@ class MainWindow(QWidget):
 
     def on_click(self):
         hostname = self.text.text()
+        api_key = self.api_key.text()
+        ip = self.ip.text()
 
         if hostname == "":
             QMessageBox.about(self, "Error", "Please fill the field")
         else:
-            res = self.__query(hostname)
+            res = self.__query(hostname,api_key , ip)
             if res:
-                self.label2.setText("Answer%s" % (res["Hello"]))
+                self.label2.setText("Answer%s" % (res["longitude"]))
                 self.label2.adjustSize()
                 self.show()
 
-    def __query(self, hostname):
-        url = "http://%s" % (hostname)
+    def __query(self, hostname, api_key, ip):
+        url = "http://%s/ip/%s?key=%s" % (hostname, ip, api_key)
         r = requests.get(url)
         if r.status_code == requests.codes.NOT_FOUND:
             QMessageBox.about(self, "Error", "IP not found")
