@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.Qt import QUrl, QDesktopServices
 import requests
 import sys
-
+import webbrowser
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -19,7 +19,7 @@ class MainWindow(QWidget):
 
     def initUI(self):
         self.setWindowTitle("Client")
-        self.setFixedSize(400, 400)
+        self.setFixedSize(800, 800)
         self.label1 = QLabel("Enter your host IP:", self)
         self.text = QLineEdit(self)
         self.text.move(10, 30)
@@ -53,9 +53,10 @@ class MainWindow(QWidget):
         if hostname == "":
             QMessageBox.about(self, "Error", "Please fill the field")
         else:
-            res = self.__query(hostname,api_key , ip)
+            res = self.__query(hostname,api_key,ip)
             if res:
-                self.label2.setText("Answer%s" % (res["longitude"]))
+                self.label2.setText("https://www.openstreetmap.org/?mlat=%s&mlon=%s#map=12" % (res["longitude"],res["latitude"]))
+                webbrowser.open_new("https://www.openstreetmap.org/?mlat=%s&mlon=%s#map=12" % (res["longitude"],res["latitude"]))
                 self.label2.adjustSize()
                 self.show()
 
