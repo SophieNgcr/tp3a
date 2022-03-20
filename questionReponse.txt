@@ -1,0 +1,8 @@
+Question 1 :
+    Un service web est un programme informatique qui permet la communication et l'échange de données entre les applications et les systèmes hétérogènes dans des environnements distribués
+
+Question 2 : 
+    Une API REST est une interface de programmation d'application. C'est un ensemble de définitions et de protocoles qui facilite la création et l'intégration de logiciels d'applications.
+
+Question 3:
+    FastAPI est un fraework pour la création d'API. Ce framework est rapide, robuste et standardisé.
